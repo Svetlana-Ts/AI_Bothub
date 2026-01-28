@@ -2,7 +2,9 @@
  * API клиент для работы с сервером чата
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+// В production на Render.com клиент и сервер на одном домене, используем относительный путь
+// В development можно использовать VITE_API_URL для указания другого сервера
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/api' : 'http://localhost:3000/api');
 
 export interface ChatMessage {
   role: 'user' | 'assistant' | 'system';

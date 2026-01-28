@@ -14,6 +14,9 @@ services:
       - key: PORT
         value: 3000
     healthCheckPath: /
+    # Автоматический деплой при пуше в main ветку
+    autoDeploy: true
+    branch: main
 
   # Вариант 2: Два отдельных сервиса (раскомментируйте, если нужен отдельный деплой)
   # - type: web
