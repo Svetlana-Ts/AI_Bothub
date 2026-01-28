@@ -1,0 +1,43 @@
+services:
+  # Вариант 1: Один сервис с комбинированным Dockerfile (рекомендуется)
+  - type: web
+    name: bothubchat
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+    healthCheckPath: /
+
+  # Вариант 2: Два отдельных сервиса (раскомментируйте, если нужен отдельный деплой)
+  # - type: web
+  #   name: bothubchat-backend
+  #   runtime: docker
+  #   dockerfilePath: ./server/Dockerfile
+  #   dockerContext: ./server
+  #   plan: starter
+  #   envVars:
+  #     - key: OPENAI_API_KEY
+  #       sync: false
+  #     - key: NODE_ENV
+  #       value: production
+  #     - key: PORT
+  #       value: 3000
+  #   healthCheckPath: /
+  #
+  # - type: web
+  #   name: bothubchat-frontend
+  #   runtime: docker
+  #   dockerfilePath: ./client/Dockerfile
+  #   dockerContext: ./client
+  #   plan: starter
+  #   envVars:
+  #     - key: VITE_API_URL
+  #       value: https://bothubchat-backend.onrender.com/api
+  #   healthCheckPath: /
